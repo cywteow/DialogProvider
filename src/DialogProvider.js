@@ -49,9 +49,11 @@ export default function DialogProvider({ children }) {
   const onClose = () => {
     setOpen(false);
   };
+  
+  const contextValue = React.useRef({showConfirmation, showCustomDialog, onClose});
 
   return (
-    <DialogContext.Provider value={{showConfirmation, showCustomDialog, onClose}}>
+    <DialogContext.Provider value={contextValue.current}>
       {children}
       {
         open &&  (
